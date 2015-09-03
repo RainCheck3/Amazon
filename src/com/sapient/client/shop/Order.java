@@ -1,6 +1,8 @@
 package com.sapient.client.shop;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import com.sapient.client.payment.Payment;
 
@@ -15,7 +17,7 @@ public class Order {
 	private String status;
 	private NewCustomer customer;
 	private Payment payment;
-	private OrderDetail orderDetail;
+	private List<OrderDetail> orderDetails;
 
 	public Date getDate() {
 		return date;
@@ -41,7 +43,7 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public Payment getPayment() {
+	public Payment getPayment() { 
 		return payment;
 	}
 
@@ -49,15 +51,22 @@ public class Order {
 		this.payment = payment;
 	}
 
-	public OrderDetail getOrderDetail() {
-		return orderDetail;
+	public List<OrderDetail> getOrderDetail() {
+		return orderDetails;
 	}
 
-	public void setOrderDetail(OrderDetail orderDetail) {
-		this.orderDetail = orderDetail;
+	public void setOrderDetail(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 	
 	public double calcTax() {
+		double result;
+		
+		Iterator<OrderDetail> iterator = orderDetails.iterator();
+		
+		
+		
+		
 		return orderDetail.calcSubTotal() * orderDetail.getTaxStatus();
 	};
 	
