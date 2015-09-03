@@ -1,5 +1,8 @@
 package com.sapient.client.payment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * 
@@ -7,6 +10,8 @@ package com.sapient.client.payment;
  *
  */
 public class Check extends Payment implements Authorization {
+	Map<String,String> bankNameIDPair = new HashMap<String,String>();
+	
 	private String name;
 	private String bankID;
 	
@@ -16,6 +21,18 @@ public class Check extends Payment implements Authorization {
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * 
+	 */
+	public void setBank(){
+		bankNameIDPair.put("SBI", "State Bank of India");
+		bankNameIDPair.put("ICI", "ICICI Bank India");
+		bankNameIDPair.put("IOB", "Indian Overseas Bank");
+		bankNameIDPair.put("BOI", "Bank of India");
+		bankNameIDPair.put("CBI", "Central Bank of India");
+		bankNameIDPair.put("ALD", "Allahabad Bank");
 	}
 	/**
 	 * 
@@ -43,17 +60,15 @@ public class Check extends Payment implements Authorization {
 	
 	@Override
 	public boolean authorized() {
+		boolean flagName,flagBankID;
 		
+		flagBankID = bankNameIDPair.containsKey(bankID);
+		flagName = bankNameIDPair.containsValue(name);
 		
+		if(flagBankID && flagName){
+			return true;
+		}
+		return false;
 		
-		
-		
-		return true;
-		
-		 
-		
-	}
-	
-	
-	
+	}	
 }
