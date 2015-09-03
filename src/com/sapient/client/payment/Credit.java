@@ -18,7 +18,7 @@ public class Credit extends Payment implements Authorization {
 	
 	/**
 	 * This methods gets credit card number.
-	 * @return
+	 * @return number
 	*/
 	public int getNumber() {
 		return number;
@@ -34,7 +34,7 @@ public class Credit extends Payment implements Authorization {
 
 	/**
 	 * This methods gets credit card Type.
-	 * @return
+	 * @return type
 	 */
 	public String getType() {
 		return type;
@@ -50,7 +50,7 @@ public class Credit extends Payment implements Authorization {
 
 	/**
 	 * This methods gets credit card ecpire date.
-	 * @return
+	 * @return date
 	 */
 	public Date getDate() {
 		return date;
