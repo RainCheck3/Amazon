@@ -42,7 +42,14 @@ public class Check extends Payment implements Authorization {
 	
 	
 	@Override
-	public void authorized() {
+	public boolean authorized() {
+		
+		
+		
+		
+		
+		return true;
+		
 		 
 		
 	}
