@@ -59,16 +59,14 @@ public class Order {
 	
 	public double calcTax() {
 		return orderDetail.calcSubTotal() * orderDetail.getTaxStatus();
-		
-		
 	};
 	
 	public double calcTotal() {
-		return 0;
+		return orderDetail.calcSubTotal() + calcTax();
 	}
 	
 	public double calcTotalWeight() {
-		return 0;
+		return orderDetail.getQuantity() * orderDetail.calcWeight();
 	}
 
 }

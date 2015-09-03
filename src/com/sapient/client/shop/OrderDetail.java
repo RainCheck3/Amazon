@@ -46,10 +46,10 @@ public class OrderDetail {
 	}
 
 	public double calcSubTotal() {
-		return 0;
+		return quantity * item.getPrice();
 	}
 
 	public double calcWeight() {
-		return 0;
+		return item.getShippingWeight();
 	}
 }
