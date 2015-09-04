@@ -116,8 +116,7 @@ public class Item {
 		if (weight > 2) {
 			this.weight = weight;
 		} else {
-			throw new InValidItemWeightException(
-					"The weight of item can't be less than 1.");
+			throw new InValidItemWeightException("The weight of item can't be less than 1.");
 		}
 	}
 

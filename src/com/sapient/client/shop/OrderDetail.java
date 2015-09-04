@@ -1,11 +1,26 @@
 package com.sapient.client.shop;
 
+
 /**
  * 
  * @author jxu1, mohit, shivam Information about a particular order, including
  *         quantity, taxStatus, and item
  * 
  */
+
+
+class InValidStockException extends Exception {
+	public InValidStockException(String message) {
+		super(message);
+	}
+}
+
+
+class InValidTaxStatusException extends Exception {
+	public InValidTaxStatusException(String message) {
+		super(message);
+	}
+}
 
 public class OrderDetail {
 	private int quantity;
@@ -21,7 +36,7 @@ public class OrderDetail {
 		if (quantity > 0 || quantity < 500) {
 			this.quantity = quantity;
 		} else {
-			throw new IllegalArgumentException("Stock value is invalid");
+			throw new InValidStockException("Stock value is invalid");
 		}
 	}
 
@@ -33,7 +48,7 @@ public class OrderDetail {
 		if (taxStatus > 0) {
 			this.taxStatus = taxStatus;
 		} else {
-			throw new IllegalArgumentException("TaxStatus can't be negative");
+			throw new InValidTaxStatusException("TaxStatus can't be negative");
 		}
 	}
 
