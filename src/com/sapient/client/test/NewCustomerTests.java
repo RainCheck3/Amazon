@@ -70,7 +70,7 @@ public class NewCustomerTests {
 	public final void testInvalidOrder() {
 		try {
 			newCustomerObjRef.setOrder(null);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
