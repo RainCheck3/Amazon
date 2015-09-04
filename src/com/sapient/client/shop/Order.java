@@ -1,4 +1,3 @@
-
 package com.sapient.client.shop;
 
 import java.util.Date;
@@ -9,9 +8,8 @@ import com.sapient.client.payment.Payment;
 
 /**
  * 
- * @author jxu1, mohit, shivam
- * Represents an Order made, with regards to
- * a specific customer, orderDetail, and payment
+ * @author jxu1, mohit, shivam Represents an Order made, with regards to a
+ *         specific customer, orderDetail, and payment
  */
 public class Order {
 	private Date date;
@@ -44,7 +42,7 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public Payment getPayment() { 
+	public Payment getPayment() {
 		return payment;
 	}
 
@@ -59,24 +57,50 @@ public class Order {
 	public void setOrderDetail(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-	
+
 	public double calcTax() {
-		double result;
-		
-		Iterator<OrderDetail> iterator = orderDetails.iterator();
-		
-		
-		
-		
-		return orderDetail.calcSubTotal() * orderDetail.getTaxStatus();
-	};
-	
-	public double calcTotal() {
-		return orderDetail.calcSubTotal() + calcTax();
+		double totalTax = 0;
+		OrderDetail currentOrder;
+
+		Iterator<OrderDetail> ordersIterator = orderDetails.iterator();
+
+		while (ordersIterator.hasNext()) {
+			currentOrder = ordersIterator.next();
+			totalTax += currentOrder.calcSubTotal()
+					* currentOrder.getTaxStatus();
+		}
+		return totalTax;
 	}
-	
+
+	public double calcTotal() {
+		double totalPrice = 0;
+		OrderDetail currentOrder;
+
+		Iterator<OrderDetail> ordersIterator = orderDetails.iterator();
+
+		// Sum up subtotals of all OrderDetails
+		while (ordersIterator.hasNext()) {
+			currentOrder = ordersIterator.next();
+			totalPrice += currentOrder.calcSubTotal();
+		}
+
+		totalPrice += calcTax();
+
+		return totalPrice;
+	}
+
 	public double calcTotalWeight() {
-		return orderDetail.getQuantity() * orderDetail.calcWeight();
+		double totalWeight = 0;
+		OrderDetail currentOrder;
+
+		Iterator<OrderDetail> ordersIterator = orderDetails.iterator();
+
+		// Sum up weights of all OrderDetails
+		while (ordersIterator.hasNext()) {
+			currentOrder = ordersIterator.next();
+			totalWeight += currentOrder.calcWeight();
+		}
+		return totalWeight;
 	}
 
 }

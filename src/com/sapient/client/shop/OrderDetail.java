@@ -51,6 +51,6 @@ public class OrderDetail {
 	}
 
 	public double calcWeight() {
-		return item.getShippingWeight();
+		return quantity * item.getShippingWeight();
 	}
 }
