@@ -2,9 +2,8 @@ package com.sapient.client.shop;
 
 /**
  * 
- * @author jxu1, mohit, shivam
- * A single item in an order, interacts with orderDetail,
- * includes information about price, shipping weight
+ * @author jxu1, mohit, shivam A single item in an order, interacts with
+ *         orderDetail, includes information about price, shipping weight
  *
  */
 
@@ -115,6 +114,7 @@ public class Item {
 		{
 		this.orderDetail = orderDetail;
 	}
+<<<<<<< HEAD
 		else{
 			throw new NullPointerException();
 			
@@ -122,6 +122,9 @@ public class Item {
 		
 	}	
 	
+=======
+
+>>>>>>> 7cdac223507a39c786672d1bfd85349c693326bd
 	public double getWeight() {
 		return weight;
 	}

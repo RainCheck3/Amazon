@@ -2,65 +2,141 @@ package com.sapient.client.test;
 
 import static org.junit.Assert.*;
 
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sapient.client.payment.Payment;
 import com.sapient.client.shop.*;
 
-
 public class OrderTestCase {
-	Order orderObjRef;
-	OrderDetail orderDetailObjRef;
-	Scanner scannerObjRef;
-	NewCustomer newCustomerObjRef;
-	Item itemObjRef;
-	
-	
-	@Before
-	public void setUp() throws Exception {
+	static Order orderObjRef;
+	static List<OrderDetail> orderDetails;
+	static NewCustomer newCustomerObjRef;
+	static Item itemObjRef;
+	static Payment paymentObjRef;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		orderObjRef = new Order();
-		orderDetailObjRef = new OrderDetail();
-		scannerObjRef = new Scanner(System.in);
-		newCustomerObjRef  =new NewCustomer();
+		orderDetails = new ArrayList<OrderDetail>();
+		newCustomerObjRef = new NewCustomer();
 		itemObjRef = new Item();
-		itemObjRef.setPrice(200);
-		orderDetailObjRef.setQuantity(2);
-		orderDetailObjRef.setTaxStatus(0.11);
-		
+		paymentObjRef = new Payment();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		orderDetailObjRef=null;
-		orderObjRef= null;
-		scannerObjRef=null;
-		itemObjRef=null;
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		orderObjRef = null;
+		orderDetails = null;
+		newCustomerObjRef = null;
+		itemObjRef = null;
+		paymentObjRef = null;
 	}
 
-	
+	@Test
+	public final void testInvalidDate() {
+		Date date = null;
+		try {
+			orderObjRef.setDate(date);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public final void testValidDate() {
+		Date date = new Date(1990, 12, 3);
+		orderObjRef.setDate(date);
+		assertEquals(1990, orderObjRef.getDate().getYear());
+		assertEquals(12, orderObjRef.getDate().getMonth());
+		assertEquals(3, orderObjRef.getDate().getDay());
+	}
+
+	@Test
+	public final void testInvalidStatus() {
+		String status = null;
+
+		try {
+			orderObjRef.setStatus(status);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public final void testValidStatus() {
+		String status = "Order placed";
+		orderObjRef.setStatus(status);
+		assertEquals("Order placed", orderObjRef.getStatus());
+	}
+
+	@Test
+	public final void testInvalidCustomer() {
+		try {
+			orderObjRef.setCustomer(null);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public final void testValidCustomer() {
+		orderObjRef.setCustomer(newCustomerObjRef);
+		assertTrue(orderObjRef.getCustomer() instanceof NewCustomer);
+	}
+
+	@Test
+	public final void testInvalidPayment() {
+		try {
+			orderObjRef.setPayment(null);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public final void testValidPayment() {
+		orderObjRef.setPayment(paymentObjRef);
+		assertTrue(orderObjRef.getPayment() instanceof Payment);
+	}
+
+	@Test
+	public final void testInvalidOrderDetail() {
+		try {
+			orderObjRef.setOrderDetail(null);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public final void testValidOrderDetail() {
+		orderObjRef.setOrderDetail(orderDetails);
+		assertTrue(orderObjRef.getOrderDetail() instanceof List<?>);
+	}
+
 	@Test
 	public final void testCalcTax() {
-		//int quantity=orderDetailObjRef.getQuantity();
-		//double price=itemObjRef.getPrice();
-		double subTotal=orderDetailObjRef.calcSubTotal();
-		double taxStatus= orderDetailObjRef.getTaxStatus();
-		
-		assertEquals(subTotal*taxStatus, orderObjRef.calcTax(),0.001);
-		
+
 	}
 
 	@Test
 	public final void testCalcTotal() {
-		//fail("Not yet implemented");
+
 	}
 
 	@Test
 	public final void testCalcTotalWeight() {
-		//fail("Not yet implemented");
+
 	}
 
 }

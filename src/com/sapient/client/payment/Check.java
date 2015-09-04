@@ -1,7 +1,6 @@
 package com.sapient.client.payment;
 
-import java.util.HashMap;
-import java.util.Map;
+import test.sapient.client.payment.TestCheck;
 
 
 /**
@@ -10,15 +9,16 @@ import java.util.Map;
  *
  */
 public class Check extends Payment implements Authorization {
-	Map<String,String> bankNameIDPair = new HashMap<String,String>();//HashMap containing Bank ID and Bank Name.
+
 	
 	private String name;
 	private String bankID;
 	
 	/**
-	 * This methos gets bank name.
+	 * This method gets bank name.
 	 * @return name
 	 */
+	
 	public String getName() {
 		return name;
 	}
@@ -26,14 +26,7 @@ public class Check extends Payment implements Authorization {
 	/**
 	 * This method set Banks Name with Bank ID in Hash Map.
 	 */
-	public void setBank(){
-		bankNameIDPair.put("SBI", "State Bank of India");
-		bankNameIDPair.put("ICI", "ICICI Bank");
-		bankNameIDPair.put("IOB", "Indian Overseas Bank");
-		bankNameIDPair.put("BOI", "Bank of India");
-		bankNameIDPair.put("CBI", "Central Bank of India");
-		bankNameIDPair.put("ALD", "Allahabad Bank");
-	}
+	
 	/**
 	 * This method sets bank name.
 	 * @param name
@@ -58,19 +51,18 @@ public class Check extends Payment implements Authorization {
 	}
 	
 	/**
-	 * This method authorise whether such bankID and bankName exist.
+	 * This method authorize whether such bankID and bankName exist.
 	 * This method overrides authorize() method from Authorization Interface in same Package.
 	 */
 	@Override
 	public boolean authorized() {
-		boolean flagName,flagBankID;
 		
-		flagBankID = bankNameIDPair.containsKey(bankID);// sets true if such Bank ID exist.
-		flagName = bankNameIDPair.containsValue(name);// sets true if such Bank Name exist.
 		
-		if(flagBankID && flagName){
+		if(TestCheck.bankNameIDPair.get(bankID).equals(name)){
 			return true;
 		}
+		
+		
 		return false;
 		
 	}	
