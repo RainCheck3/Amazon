@@ -37,7 +37,7 @@ public class TestPayment {
 	 */
 	@Test
 	public final void testSetOrderObjRef() {
-		//fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class TestPayment {
 	public final void testSetAmountPaid() {
 		payment.setAmountPaid(100);
 		assertEquals(payment.getAmountPaid(), 100, 1.00);
-		
+		assertNotEquals(payment.getAmountPaid(), 110, 1.00);
 	}
 
 }

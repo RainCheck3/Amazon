@@ -22,6 +22,8 @@ public class OrderDetailsTestCase {
 	
 	static Map<String, List<String>> item;
 	static List<String> itemDetail;
+	private Object quantity;
+	private Object taxStatus;
 	
 	
 	@Before
@@ -44,17 +46,23 @@ public class OrderDetailsTestCase {
 
 	@Test
 	public final void testGetQuantity() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
+	}
+
+	
+	@Test
+	public final void testValidQuantity() {
+		
 	}
 
 	@Test
-	public final void testSetQuantity() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testGetTaxStatus() {
-		fail("Not yet implemented");
+	public final void testInvalidTaxStatus() {
+		double taxStatus = orderDetailsObjRef.getTaxStatus();
+		if (taxStatus == 0) {
+			throw new NullPointerException();
+		} else {
+			this.taxStatus = quantity;
+		}
 	}
 
 	@Test
