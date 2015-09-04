@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sapient.client.payment.Payment;
+import com.sapient.client.shop.NewCustomer;
+import com.sapient.client.shop.Order;
 
 /**
  * @author spra26
@@ -36,10 +38,22 @@ public class TestPayment {
 	 * Test method for {@link com.sapient.client.payment.Payment#setOrderObjRef(com.sapient.client.shop.Order)}.
 	 */
 	@Test
-	public final void testSetOrderObjRef() {
-		
+	public final void testInvalidOrder() {
+		NewCustomer newCustomerObjRef = new NewCustomer();
+		try {
+			newCustomerObjRef.setOrder(null);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
+	@Test
+	public final void testValidOrder() {
+		NewCustomer newCustomerObjRef = new NewCustomer();
+		Order orderObjRef = new Order();
+		newCustomerObjRef.setOrder(orderObjRef);
+		assertTrue(newCustomerObjRef.getOrder() instanceof Order);
+	}
 	/**
 	 * Test method for {@link com.sapient.client.payment.Payment#setAmountPaid(double)}.
 	 */

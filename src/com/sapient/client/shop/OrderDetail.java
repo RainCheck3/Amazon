@@ -8,20 +8,6 @@ package com.sapient.client.shop;
  * 
  */
 
-
-class InValidStockException extends Exception {
-	public InValidStockException(String message) {
-		super(message);
-	}
-}
-
-
-class InValidTaxStatusException extends Exception {
-	public InValidTaxStatusException(String message) {
-		super(message);
-	}
-}
-
 public class OrderDetail {
 	private int quantity;
 	private double taxStatus;
@@ -32,11 +18,11 @@ public class OrderDetail {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) throws Exception {
+	public void setQuantity(int quantity) throws IllegalArgumentException {
 		if (quantity > 0 || quantity < 500) {
 			this.quantity = quantity;
 		} else {
-			throw new InValidStockException("Stock value is invalid");
+			throw new IllegalArgumentException("Stock value is invalid");
 		}
 	}
 
@@ -44,11 +30,11 @@ public class OrderDetail {
 		return taxStatus;
 	}
 
-	public void setTaxStatus(double taxStatus) throws Exception {
+	public void setTaxStatus(double taxStatus) throws IllegalArgumentException {
 		if (taxStatus >= 0) {
 			this.taxStatus = taxStatus;
 		} else {
-			throw new InValidTaxStatusException("TaxStatus can't be negative");
+			throw new IllegalArgumentException("TaxStatus can't be negative");
 		}
 	}
 
@@ -56,7 +42,7 @@ public class OrderDetail {
 		return order;
 	}
 
-	public void setOrder(Order order) throws Exception {
+	public void setOrder(Order order) throws NullPointerException {
 		if (order != null) {
 			this.order = order;
 		} else {
@@ -68,7 +54,7 @@ public class OrderDetail {
 		return item;
 	}
 
-	public void setItem(Item item) throws Exception {
+	public void setItem(Item item) throws NullPointerException {
 		if (item != null) {
 			this.item = item;
 		} else {

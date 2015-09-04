@@ -91,7 +91,7 @@ public class OrderTestCase {
 		assertTrue(orderObjRef.getCustomer() instanceof NewCustomer);
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void testInvalidPayment() {
 		try {
 			orderObjRef.setPayment(null);
