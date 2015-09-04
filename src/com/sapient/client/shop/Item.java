@@ -114,17 +114,13 @@ public class Item {
 		{
 		this.orderDetail = orderDetail;
 	}
-<<<<<<< HEAD
 		else{
 			throw new NullPointerException();
 			
 		}
 		
 	}	
-	
-=======
 
->>>>>>> 7cdac223507a39c786672d1bfd85349c693326bd
 	public double getWeight() {
 		return weight;
 	}
