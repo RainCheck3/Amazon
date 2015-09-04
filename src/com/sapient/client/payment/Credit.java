@@ -84,8 +84,6 @@ public class Credit extends Payment implements Authorization {
 		 * not.
 		 */
 		TestCredit.creditCardType();
-		System.out.println(number.substring(0,4));
-		System.out.println(TestCredit.creditCardType.get(type));
 		if (number.substring(0,4).equals(TestCredit.creditCardType.get(type))) {
 			return true;
 		}
