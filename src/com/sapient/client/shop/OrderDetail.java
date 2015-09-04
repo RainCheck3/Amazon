@@ -8,6 +8,31 @@ package com.sapient.client.shop;
  * quantity, taxStatus, and item
  * 
  */
+
+class InValidTaxStatusException extends Exception
+{
+    public InValidTaxStatusException(String message)
+    {
+        super(message);
+    }
+}
+
+class InValidLengthException extends Exception
+{
+    public InValidLengthException(String message)
+    {
+        super(message);
+    }
+}
+
+class InValidStockException extends Exception
+{
+    public InValidStockException(String message)
+    {
+        super(message);
+    }
+}
+
 public class OrderDetail {
 	private int quantity;
 	private double taxStatus;
@@ -18,32 +43,52 @@ public class OrderDetail {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setQuantity(int quantity) throws Exception {
+		if(quantity>0 || quantity<500){
+			this.quantity = quantity;
+		}
+		else{
+			throw new InValidStockException("Stock value is invalid");
+		}
 	}
 
 	public double getTaxStatus() {
 		return taxStatus;
 	}
 
-	public void setTaxStatus(double taxStatus) {
-		this.taxStatus = taxStatus;
+	public void setTaxStatus(double taxStatus)throws Exception {
+		if(taxStatus>0.2){
+			this.taxStatus = taxStatus;
+		}
+		else{
+			throw new InValidTaxStatusException("TaxStatus can't be less than 0.2.");
+		}
 	}
 
 	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(Order order) throws Exception{
+		if(order !=null){
+			this.order = order;
+		}
+		else{
+			throw new NullPointerException();
+		}
 	}
 
 	public Item getItem() {
 		return item;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItem(Item item)throws Exception {
+		if(item!=null){
+			this.item = item;
+		}
+		else{
+			throw new NullPointerException();
+		}
 	}
 
 	public double calcSubTotal() {

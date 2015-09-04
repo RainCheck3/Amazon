@@ -2,23 +2,31 @@ package com.sapient.client.payment;
 
 import com.sapient.client.shop.Order;
 
+
+
+
 public class Payment {
-	private double totalAmount;
+	private double amountPaid;
 	Order orderObjRef;
 	
 	public Order getOrderObjRef() {
 		return orderObjRef;
 	}
-	public void setOrderObjRef(Order orderObjRef) {
-		this.orderObjRef = orderObjRef;
+	public void setOrderObjRef(Order orderObjRef) throws Exception{
+		if(orderObjRef !=null){
+			this.orderObjRef = orderObjRef;
+		}
+		else{
+			throw new NullPointerException();
+		}
 	}
 	
 	
-	public double getTotalAmount() {
-		return totalAmount;
+	public double getAmountPaid() {
+		return amountPaid;
 	}
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setAmountPaid(double amount) {
+		this.amountPaid = amount;
 	}
 	
 	
