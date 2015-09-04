@@ -1,37 +1,11 @@
 package com.sapient.client.shop;
 
-
 /**
  * 
- * @author jxu1, mohit, shivam
- * Information about a particular order, including
- * quantity, taxStatus, and item
+ * @author jxu1, mohit, shivam Information about a particular order, including
+ *         quantity, taxStatus, and item
  * 
  */
-
-class InValidTaxStatusException extends Exception
-{
-    public InValidTaxStatusException(String message)
-    {
-        super(message);
-    }
-}
-
-class InValidLengthException extends Exception
-{
-    public InValidLengthException(String message)
-    {
-        super(message);
-    }
-}
-
-class InValidStockException extends Exception
-{
-    public InValidStockException(String message)
-    {
-        super(message);
-    }
-}
 
 public class OrderDetail {
 	private int quantity;
@@ -44,11 +18,10 @@ public class OrderDetail {
 	}
 
 	public void setQuantity(int quantity) throws Exception {
-		if(quantity>0 || quantity<500){
+		if (quantity > 0 || quantity < 500) {
 			this.quantity = quantity;
-		}
-		else{
-			throw new InValidStockException("Stock value is invalid");
+		} else {
+			throw new IllegalArgumentException("Stock value is invalid");
 		}
 	}
 
@@ -56,12 +29,11 @@ public class OrderDetail {
 		return taxStatus;
 	}
 
-	public void setTaxStatus(double taxStatus)throws Exception {
-		if(taxStatus>0.2){
+	public void setTaxStatus(double taxStatus) throws Exception {
+		if (taxStatus > 0) {
 			this.taxStatus = taxStatus;
-		}
-		else{
-			throw new InValidTaxStatusException("TaxStatus can't be less than 0.2.");
+		} else {
+			throw new IllegalArgumentException("TaxStatus can't be negative");
 		}
 	}
 
@@ -69,11 +41,10 @@ public class OrderDetail {
 		return order;
 	}
 
-	public void setOrder(Order order) throws Exception{
-		if(order !=null){
+	public void setOrder(Order order) throws Exception {
+		if (order != null) {
 			this.order = order;
-		}
-		else{
+		} else {
 			throw new NullPointerException();
 		}
 	}
@@ -82,11 +53,10 @@ public class OrderDetail {
 		return item;
 	}
 
-	public void setItem(Item item)throws Exception {
-		if(item!=null){
+	public void setItem(Item item) throws Exception {
+		if (item != null) {
 			this.item = item;
-		}
-		else{
+		} else {
 			throw new NullPointerException();
 		}
 	}

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test.sapient.client.payment;
+package com.sapient.client.test;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +21,7 @@ import com.sapient.client.payment.Credit;
  */
 public class TestCredit {
 	Credit credit;
+	Credit creditFalse;
 	Date expiryDate;
 	public static Map<String, String> creditCardType = new HashMap<String, String>();
 	
@@ -40,10 +41,14 @@ public class TestCredit {
 	@Before
 	public void setUp() throws Exception {
 		credit = new Credit();
+		creditFalse= new Credit();
 		expiryDate= new Date(31,12,2018);
 		credit.setNumber("51203698");
 		credit.setType("Visa");
 		credit.setDate(expiryDate);
+		creditFalse.setNumber("51203698");
+		creditFalse.setType("Master");
+		creditFalse.setDate(expiryDate);
 		TestCredit.creditCardType();
 	}
 

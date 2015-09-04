@@ -24,7 +24,7 @@ public class Order {
 
 	public void setDate(Date date) {
 		if (date == null) {
-			throw new IllegalArgumentException("Invalid date entered");
+			throw new NullPointerException();
 		} else {
 			this.date = date;
 		}
@@ -36,7 +36,7 @@ public class Order {
 
 	public void setStatus(String status) {
 		if (status == null) {
-			throw new IllegalArgumentException("Invalid status entered");
+			throw new NullPointerException();
 
 		} else {
 			this.status = status;
@@ -49,7 +49,7 @@ public class Order {
 
 	public void setCustomer(NewCustomer customer) {
 		if (customer == null) {
-			throw new IllegalArgumentException("Null customer object");
+			throw new NullPointerException();
 		} else {
 			this.customer = customer;
 		}
@@ -61,7 +61,7 @@ public class Order {
 
 	public void setPayment(Payment payment) {
 		if (payment == null) {
-			throw new IllegalArgumentException("Null payment object");
+			throw new NullPointerException();
 		} else {
 			this.payment = payment;
 		}
@@ -73,7 +73,7 @@ public class Order {
 
 	public void setOrderDetail(List<OrderDetail> orderDetails) {
 		if (orderDetails == null) {
-			throw new IllegalArgumentException("Null orderDetails object");
+			throw new NullPointerException();
 		} else {
 			this.orderDetails = orderDetails;
 		}

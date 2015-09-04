@@ -7,38 +7,28 @@ package com.sapient.client.shop;
  *
  */
 
-class InValidLengthException extends Exception
-{
-    public InValidLengthException(String message)
-    {
-        super(message);
-    }
+class InValidLengthException extends Exception {
+	public InValidLengthException(String message) {
+		super(message);
+	}
 }
 
-
-class InValidShippingWeightException extends Exception
-{
-    public InValidShippingWeightException(String message)
-    {
-        super(message);
-    }
+class InValidShippingWeightException extends Exception {
+	public InValidShippingWeightException(String message) {
+		super(message);
+	}
 }
 
-
-class InValidPriceException extends Exception
-{
-    public InValidPriceException(String message)
-    {
-        super(message);
-    }
+class InValidPriceException extends Exception {
+	public InValidPriceException(String message) {
+		super(message);
+	}
 }
 
-class InValidItemWeightException extends Exception
-{
-    public InValidItemWeightException(String message)
-    {
-        super(message);
-    }
+class InValidItemWeightException extends Exception {
+	public InValidItemWeightException(String message) {
+		super(message);
+	}
 }
 
 public class Item {
@@ -46,21 +36,18 @@ public class Item {
 	private double weight;
 	private String itemName;
 
-
 	private double shippingWeight;
 	private String description;
 	private OrderDetail orderDetail;
-	
 
 	public String getItemName() {
 		return itemName;
 	}
 
-	public void setItemName(String itemName)throws Exception {
-		if(itemName.length()>1){
+	public void setItemName(String itemName) throws Exception {
+		if (itemName.length() > 1) {
 			this.itemName = itemName;
-		}
-		else{
+		} else {
 			throw new InValidLengthException("The item name is not valid.");
 		}
 	}
@@ -70,13 +57,13 @@ public class Item {
 	}
 
 	public void setPrice(double price) throws Exception {
-		if(price>0){
+		if (price > 0) {
 			this.price = price;
+		} else {
+			throw new InValidPriceException(
+					"The price of the item is less than or equal to zero.");
 		}
-		else{
-			throw new InValidPriceException("The price of the item is less than or equal to zero.");
-		}
-		
+
 	}
 
 	public double getShippingWeight() {
@@ -84,11 +71,11 @@ public class Item {
 	}
 
 	public void setShippingWeight(double shippingWeight) throws Exception {
-		if(shippingWeight>weight){
+		if (shippingWeight > weight) {
 			this.shippingWeight = shippingWeight;
-		}
-		else{
-			throw new InValidShippingWeightException("shipping weight is less than or equal to weight of item");
+		} else {
+			throw new InValidShippingWeightException(
+					"shipping weight is less than or equal to weight of item");
 		}
 	}
 
@@ -96,12 +83,12 @@ public class Item {
 		return description;
 	}
 
-	public void setDescription(String description)throws Exception {
-		if(description.length()<50){
-			throw new InValidLengthException("Description is not of valid length.");
-		}
-		else{
-			this.description=description;
+	public void setDescription(String description) throws Exception {
+		if (description.length() < 50) {
+			throw new InValidLengthException(
+					"Description is not of valid length.");
+		} else {
+			this.description = description;
 		}
 	}
 
@@ -110,30 +97,28 @@ public class Item {
 	}
 
 	public void setOrderDetail(OrderDetail orderDetail) throws Exception {
-		if(orderDetail !=null)
-		{
-		this.orderDetail = orderDetail;
-	}
-		else{
-			throw new NullPointerException();
-			
+
+		if (orderDetail != null) {
+			this.orderDetail = orderDetail;
 		}
-		
-	}	
+
+		else {
+			throw new NullPointerException();
+
+		}
+	}
 
 	public double getWeight() {
 		return weight;
 	}
-	
+
 	public void setWeight(double weight) throws Exception {
-	if(weight>2){
-		this.weight = weight;
+		if (weight > 2) {
+			this.weight = weight;
+		} else {
+			throw new InValidItemWeightException(
+					"The weight of item can't be less than 1.");
+		}
 	}
-	else{
-		throw new InValidItemWeightException("The weight of item can't be less than 1.");
-	}
-	}
-	
-	
-	
+
 }

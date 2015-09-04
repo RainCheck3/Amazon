@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test.sapient.client.payment;
+package com.sapient.client.test;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +21,7 @@ import com.sapient.client.payment.Check;
 public class TestCheck {
 	public static Map<String,String> bankNameIDPair = new HashMap<String,String>();
 	String bankName="State Bank of India";
-	Check check = new Check();
+	Check check;
 	
 	public static void setBank(){
 		bankNameIDPair.put("SBI", "State Bank of India");
@@ -36,8 +36,7 @@ public class TestCheck {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		check.setName("State Bank of India");
-		check.setBankID("SBI");
+		check = new Check();
 		TestCheck.setBank();
 	}
 
@@ -55,9 +54,22 @@ public class TestCheck {
 	 */
 	@Test
 	public final void testAuthorized() {
-		
+		check.setName("State Bank of India");
+		check.setBankID("SBI");
 		assertTrue(check.authorized());
 	}
 	
+	@Test(expected = NullPointerException.class)
+	public final void testAuthorizedNull() {
+		check.setName("State Bank Of India");
+		check.setBankID("SIB");
+		check.authorized();
+	}
 	
+	@Test
+	public final void testAuthorizedFalse() {
+		check.setName("Bank Of India");
+		check.setBankID("SBI");
+		assertFalse(check.authorized());
+	}
 }

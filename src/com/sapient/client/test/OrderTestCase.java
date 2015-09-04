@@ -5,11 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -46,7 +43,7 @@ public class OrderTestCase {
 		Date date = null;
 		try {
 			orderObjRef.setDate(date);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
@@ -67,7 +64,7 @@ public class OrderTestCase {
 
 		try {
 			orderObjRef.setStatus(status);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
@@ -83,7 +80,7 @@ public class OrderTestCase {
 	public final void testInvalidCustomer() {
 		try {
 			orderObjRef.setCustomer(null);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
@@ -98,7 +95,7 @@ public class OrderTestCase {
 	public final void testInvalidPayment() {
 		try {
 			orderObjRef.setPayment(null);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
@@ -113,7 +110,7 @@ public class OrderTestCase {
 	public final void testInvalidOrderDetail() {
 		try {
 			orderObjRef.setOrderDetail(null);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
