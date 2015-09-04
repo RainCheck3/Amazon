@@ -2,9 +2,8 @@ package com.sapient.client.shop;
 
 /**
  * 
- * @author jxu1, mohit, shivam
- * A single item in an order, interacts with orderDetail,
- * includes information about price, shipping weight
+ * @author jxu1, mohit, shivam A single item in an order, interacts with
+ *         orderDetail, includes information about price, shipping weight
  *
  */
 public class Item {
@@ -45,7 +44,7 @@ public class Item {
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
 	}
-	
+
 	public double getWeight() {
 		return weight;
 	}
