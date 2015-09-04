@@ -15,7 +15,7 @@ import com.sapient.client.shop.*;
 
 public class OrderTestCase {
 	static Order orderObjRef;
-	static List<OrderDetail> orderDetails;
+	static List<OrderDetail> orderDetailsList;
 	static NewCustomer newCustomerObjRef;
 	static Item itemObjRef;
 	static Payment paymentObjRef;
@@ -23,7 +23,7 @@ public class OrderTestCase {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		orderObjRef = new Order();
-		orderDetails = new ArrayList<OrderDetail>();
+		orderDetailsList = new ArrayList<OrderDetail>();
 		newCustomerObjRef = new NewCustomer();
 		itemObjRef = new Item();
 		paymentObjRef = new Payment();
@@ -32,7 +32,7 @@ public class OrderTestCase {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		orderObjRef = null;
-		orderDetails = null;
+		orderDetailsList = null;
 		newCustomerObjRef = null;
 		itemObjRef = null;
 		paymentObjRef = null;
@@ -117,23 +117,160 @@ public class OrderTestCase {
 
 	@Test
 	public final void testValidOrderDetail() {
-		orderObjRef.setOrderDetail(orderDetails);
+		orderObjRef.setOrderDetail(orderDetailsList);
 		assertTrue(orderObjRef.getOrderDetail() instanceof List<?>);
 	}
 
 	@Test
 	public final void testCalcTax() {
+		// Create orderDetail objects
+		OrderDetail orderOne = new OrderDetail();
+		OrderDetail orderTwo = new OrderDetail();
+		OrderDetail orderThree = new OrderDetail();
 
+		// Create item objects
+		Item itemOne = new Item();
+		Item itemTwo = new Item();
+		Item itemThree = new Item();
+
+		orderDetailsList.clear();
+
+		try {
+			// Set item prices
+			itemOne.setPrice(100);
+			itemTwo.setPrice(500);
+			itemThree.setPrice(10);
+
+			// Associate item with orderDetails
+			orderOne.setItem(itemOne);
+			orderTwo.setItem(itemTwo);
+			orderThree.setItem(itemThree);
+
+			// Set orderDetail quantities
+			orderOne.setQuantity(1);
+			orderTwo.setQuantity(5);
+			orderThree.setQuantity(10);
+
+			// set orderDetail tax statuses
+			orderOne.setTaxStatus(0.2);
+			orderTwo.setTaxStatus(0);
+			orderThree.setTaxStatus(0.1);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Add individual orders to list
+		orderDetailsList.add(orderOne);
+		orderDetailsList.add(orderTwo);
+		orderDetailsList.add(orderThree);
+
+		// Add list of orders to Order obj
+		orderObjRef.setOrderDetail(orderDetailsList);
+
+		assertEquals(30, orderObjRef.calcTax(), 0);
 	}
 
 	@Test
 	public final void testCalcTotal() {
+		// Create orderDetail objects
+		OrderDetail orderOne = new OrderDetail();
+		OrderDetail orderTwo = new OrderDetail();
+		OrderDetail orderThree = new OrderDetail();
 
+		// Create item objects
+		Item itemOne = new Item();
+		Item itemTwo = new Item();
+		Item itemThree = new Item();
+
+		orderDetailsList.clear();
+
+		try {
+			// Set item prices
+			itemOne.setPrice(100);
+			itemTwo.setPrice(500);
+			itemThree.setPrice(10);
+
+			// Associate item with orderDetails
+			orderOne.setItem(itemOne);
+			orderTwo.setItem(itemTwo);
+			orderThree.setItem(itemThree);
+
+			// Set orderDetail quantities
+			orderOne.setQuantity(1);
+			orderTwo.setQuantity(5);
+			orderThree.setQuantity(10);
+
+			// set orderDetail tax statuses
+			orderOne.setTaxStatus(0.2);
+			orderTwo.setTaxStatus(0);
+			orderThree.setTaxStatus(0.1);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Add individual orders to list
+		orderDetailsList.add(orderOne);
+		orderDetailsList.add(orderTwo);
+		orderDetailsList.add(orderThree);
+
+		// Add list of orders to Order obj
+		orderObjRef.setOrderDetail(orderDetailsList);
+
+		assertEquals(2730, orderObjRef.calcTotal(), 0);
 	}
 
 	@Test
 	public final void testCalcTotalWeight() {
+		// Create orderDetail objects
+		OrderDetail orderOne = new OrderDetail();
+		OrderDetail orderTwo = new OrderDetail();
+		OrderDetail orderThree = new OrderDetail();
 
+		// Create item objects
+		Item itemOne = new Item();
+		Item itemTwo = new Item();
+		Item itemThree = new Item();
+
+		orderDetailsList.clear();
+
+		try {
+			// Set item weights & shipping weights
+			itemOne.setWeight(8);
+			itemTwo.setWeight(450);
+			itemThree.setWeight(3);
+
+			itemOne.setShippingWeight(10);
+			itemTwo.setShippingWeight(500);
+			itemThree.setShippingWeight(5);
+
+			// Associate item with orderDetails
+			orderOne.setItem(itemOne);
+			orderTwo.setItem(itemTwo);
+			orderThree.setItem(itemThree);
+
+			// Set orderDetail quantities
+			orderOne.setQuantity(5);
+			orderTwo.setQuantity(1);
+			orderThree.setQuantity(6);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Add individual orders to list
+		orderDetailsList.add(orderOne);
+		orderDetailsList.add(orderTwo);
+		orderDetailsList.add(orderThree);
+
+		// Add list of orders to Order obj
+		orderObjRef.setOrderDetail(orderDetailsList);
+
+		assertEquals(580, orderObjRef.calcTotalWeight(), 0);
 	}
 
 }
