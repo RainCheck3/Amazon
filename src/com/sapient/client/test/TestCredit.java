@@ -22,7 +22,9 @@ import com.sapient.client.payment.Credit;
 public class TestCredit {
 	Credit credit;
 	Credit creditFalse;
+	Credit creditTest;
 	Date expiryDate;
+	Date expiryDateFalse;
 	public static Map<String, String> creditCardType = new HashMap<String, String>();
 	
 	
@@ -42,13 +44,15 @@ public class TestCredit {
 	public void setUp() throws Exception {
 		credit = new Credit();
 		creditFalse= new Credit();
+		creditTest = new Credit();
 		expiryDate= new Date(31,12,2018);
+		expiryDateFalse= new Date(1,8,2015);
 		credit.setNumber("51203698");
 		credit.setType("Visa");
 		credit.setDate(expiryDate);
-		creditFalse.setNumber("51203698");
+		creditFalse.setNumber("5120369");
 		creditFalse.setType("Master");
-		creditFalse.setDate(expiryDate);
+		creditFalse.setDate(expiryDateFalse);
 		TestCredit.creditCardType();
 	}
 
@@ -64,8 +68,8 @@ public class TestCredit {
 	 */
 	@Test
 	public final void testAuthorizeCreditCardType() {
-		System.out.println(creditCardType.get(credit.getType()));
 		assertTrue(credit.authorizeCreditCardType(credit.getType(), credit.getNumber()));
+		assertFalse(creditFalse.authorizeCreditCardType(creditFalse.getType(), creditFalse.getNumber()));
 	}
 
 	/**
@@ -74,6 +78,7 @@ public class TestCredit {
 	@Test
 	public final void testAuthorizecreditCardNumber() {
 		assertTrue(credit.authorizecreditCardNumber(credit.getNumber()));
+		assertFalse(creditFalse.authorizecreditCardNumber(creditFalse.getNumber()));
 	}
 
 	/**
@@ -81,7 +86,11 @@ public class TestCredit {
 	 */
 	@Test
 	public final void testAuthorizeCreditCardExpiryDate() {
+		creditFalse.setNumber("51203691");
+		creditFalse.setType("Visa");
+		creditFalse.setDate(expiryDateFalse);
 		assertTrue(credit.authorizeCreditCardExpiryDate(credit.getNumber(), credit.getDate()));
+		assertFalse(creditFalse.authorizeCreditCardExpiryDate(creditFalse.getNumber(), creditFalse.getDate()));
 	}
 
 	/**
@@ -90,6 +99,33 @@ public class TestCredit {
 	@Test
 	public final void testAuthorized() {
 		assertTrue(credit.authorized());
+		assertFalse(credit.authorized());
 	}
+	
+	@Test
+	public final void testSetNumber() {
+		String number="123456678";
+		creditTest.setNumber(number);
+		assertEquals(creditTest.getNumber(), number );
+	}
+	
+	@Test
+	public final void testSetType() {
+		String type="123456678";
+		creditTest.setType(type);
+		assertEquals(creditTest.getType(), type );
+	}
+	
+
+	@Test
+	public final void testSetExpDate() {
+		@SuppressWarnings("deprecation")
+		Date date=new Date(12,12,2010);
+		creditTest.setDate(date);
+		assertEquals(creditTest.getDate(), date );
+	}
+	
+	
+	
 
 }

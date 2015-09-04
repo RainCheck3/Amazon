@@ -23,9 +23,6 @@ public class Check extends Payment implements Authorization {
 		return name;
 	}
 	
-	/**
-	 * This method set Banks Name with Bank ID in Hash Map.
-	 */
 	
 	/**
 	 * This method sets bank name.

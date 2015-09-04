@@ -72,4 +72,16 @@ public class TestCheck {
 		check.setBankID("SBI");
 		assertFalse(check.authorized());
 	}
+	
+	@Test
+	public final void testSetName() {
+		check.setName("Bank Of India");
+		assertEquals(check.getName(), "Bank Of India");
+	}
+	
+	@Test
+	public final void testSetBankID() {
+		check.setBankID("SBI");
+		assertEquals(check.getBankID(), "SBI");
+	}
 }

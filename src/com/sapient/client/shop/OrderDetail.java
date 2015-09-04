@@ -45,7 +45,7 @@ public class OrderDetail {
 	}
 
 	public void setTaxStatus(double taxStatus) throws Exception {
-		if (taxStatus > 0) {
+		if (taxStatus >= 0) {
 			this.taxStatus = taxStatus;
 		} else {
 			throw new InValidTaxStatusException("TaxStatus can't be negative");

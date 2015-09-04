@@ -1,5 +1,6 @@
 package com.sapient.client.shop;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +13,7 @@ import com.sapient.client.payment.Payment;
  *         specific customer, orderDetail, and payment
  */
 public class Order {
+	private Calendar calendar;
 	private Date date;
 	private String status;
 	private NewCustomer customer;
@@ -81,27 +83,18 @@ public class Order {
 
 	public double calcTax() {
 		double totalTax = 0;
-		OrderDetail currentOrder;
 
-		Iterator<OrderDetail> ordersIterator = orderDetails.iterator();
-
-		while (ordersIterator.hasNext()) {
-			currentOrder = ordersIterator.next();
-			totalTax += currentOrder.calcSubTotal()
-					* currentOrder.getTaxStatus();
+		for (OrderDetail currentOrder : orderDetails) {
+			totalTax += (currentOrder.calcSubTotal() * currentOrder
+					.getTaxStatus());
 		}
 		return totalTax;
 	}
 
 	public double calcTotal() {
 		double totalPrice = 0;
-		OrderDetail currentOrder;
 
-		Iterator<OrderDetail> ordersIterator = orderDetails.iterator();
-
-		// Sum up subtotals of all OrderDetails
-		while (ordersIterator.hasNext()) {
-			currentOrder = ordersIterator.next();
+		for (OrderDetail currentOrder : orderDetails) {
 			totalPrice += currentOrder.calcSubTotal();
 		}
 		totalPrice += calcTax();
@@ -111,16 +104,10 @@ public class Order {
 
 	public double calcTotalWeight() {
 		double totalWeight = 0;
-		OrderDetail currentOrder;
 
-		Iterator<OrderDetail> ordersIterator = orderDetails.iterator();
-
-		// Sum up weights of all OrderDetails
-		while (ordersIterator.hasNext()) {
-			currentOrder = ordersIterator.next();
+		for (OrderDetail currentOrder : orderDetails) {
 			totalWeight += currentOrder.calcWeight();
 		}
 		return totalWeight;
 	}
-
 }
