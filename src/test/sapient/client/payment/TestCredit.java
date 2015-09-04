@@ -6,6 +6,8 @@ package test.sapient.client.payment;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +22,17 @@ import com.sapient.client.payment.Credit;
 public class TestCredit {
 	Credit credit;
 	Date expiryDate;
+	public static Map<String, String> creditCardType = new HashMap<String, String>();
+	
+	
+	public static void creditCardType() {
+		creditCardType.put("Visa", "5120");
+		creditCardType.put("Master", "4186");
+		creditCardType.put("Mastero", "7890");
+		creditCardType.put("American Express", "1236");
+		creditCardType.put("Dscover", "9512");
+		creditCardType.put("Solo", "6052");
+	}
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -31,7 +44,7 @@ public class TestCredit {
 		credit.setNumber("51203698");
 		credit.setType("Visa");
 		credit.setDate(expiryDate);
-		credit.creditCardType();
+		TestCredit.creditCardType();
 	}
 
 	/**
@@ -46,7 +59,8 @@ public class TestCredit {
 	 */
 	@Test
 	public final void testAuthorizeCreditCardType() {
-		fail("Not yet implemented");
+		System.out.println(creditCardType.get(credit.getType()));
+		assertTrue(credit.authorizeCreditCardType(credit.getType(), credit.getNumber()));
 	}
 
 	/**
@@ -54,7 +68,7 @@ public class TestCredit {
 	 */
 	@Test
 	public final void testAuthorizecreditCardNumber() {
-		fail("Not yet implemented");
+		assertTrue(credit.authorizecreditCardNumber(credit.getNumber()));
 	}
 
 	/**
@@ -62,7 +76,7 @@ public class TestCredit {
 	 */
 	@Test
 	public final void testAuthorizeCreditCardExpiryDate() {
-		fail("Not yet implemented");
+		assertTrue(credit.authorizeCreditCardExpiryDate(credit.getNumber(), credit.getDate()));
 	}
 
 	/**

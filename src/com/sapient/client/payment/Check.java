@@ -1,7 +1,6 @@
 package com.sapient.client.payment;
 
-import java.util.HashMap;
-import java.util.Map;
+import test.sapient.client.payment.TestCheck;
 
 
 /**
@@ -10,7 +9,7 @@ import java.util.Map;
  *
  */
 public class Check extends Payment implements Authorization {
-	Map<String,String> bankNameIDPair = new HashMap<String,String>();//HashMap containing Bank ID and Bank Name.
+
 	
 	private String name;
 	private String bankID;
@@ -27,14 +26,7 @@ public class Check extends Payment implements Authorization {
 	/**
 	 * This method set Banks Name with Bank ID in Hash Map.
 	 */
-	public void setBank(){
-		bankNameIDPair.put("SBI", "State Bank of India");
-		bankNameIDPair.put("ICI", "ICICI Bank");
-		bankNameIDPair.put("IOB", "Indian Overseas Bank");
-		bankNameIDPair.put("BOI", "Bank of India");
-		bankNameIDPair.put("CBI", "Central Bank of India");
-		bankNameIDPair.put("ALD", "Allahabad Bank");
-	}
+	
 	/**
 	 * This method sets bank name.
 	 * @param name
@@ -66,7 +58,7 @@ public class Check extends Payment implements Authorization {
 	public boolean authorized() {
 		
 		
-		if(bankNameIDPair.get(bankID).equals(name)){
+		if(TestCheck.bankNameIDPair.get(bankID).equals(name)){
 			return true;
 		}
 		

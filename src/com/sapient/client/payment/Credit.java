@@ -2,8 +2,7 @@ package com.sapient.client.payment;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import test.sapient.client.payment.TestCredit;
 
 /**
  * 
@@ -16,16 +15,7 @@ public class Credit extends Payment implements Authorization {
 	private String type;
 	private Date date;
 
-	Map<String, String> creditCardType = new HashMap<String, String>();
 
-	public void creditCardType() {
-		creditCardType.put("Visa", "5120");
-		creditCardType.put("Master", "4186");
-		creditCardType.put("Mastero", "7890");
-		creditCardType.put("American Express", "1236");
-		creditCardType.put("Dscover", "9512");
-		creditCardType.put("Solo", "6052");
-	}
 
 	/**
 	 * This methods gets credit card number.
@@ -92,7 +82,10 @@ public class Credit extends Payment implements Authorization {
 		 * This checks whether credit card number is consistent with its type or
 		 * not.
 		 */
-		if (number.substring(0, 3).equals(creditCardType.get(type))) {
+		TestCredit.creditCardType();
+		System.out.println(number.substring(0,4));
+		System.out.println(TestCredit.creditCardType.get(type));
+		if (number.substring(0,4).equals(TestCredit.creditCardType.get(type))) {
 			return true;
 		}
 		return false;
