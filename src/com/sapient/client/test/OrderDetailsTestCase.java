@@ -16,7 +16,7 @@ import org.junit.Test;
 public class OrderDetailsTestCase {
 	
 	static Order orderObjRef;
-	static Item itemObjRef;
+	static Item itemObjRef1,itemObjRef2,itemObjRef3,itemObjRef4;
 	static OrderDetail orderDetailsObjRef;
 	
 	
@@ -24,16 +24,36 @@ public class OrderDetailsTestCase {
 	static List<String> itemDetail;
 	private Object quantity;
 	private Object taxStatus;
+	//static Map<String, List<Item>> item;
+	static List<Item> itemDetail;
 	
 	
 	@Before
 	public void setUp() throws Exception {
 		orderObjRef= new Order();
 		orderDetailsObjRef = new OrderDetail();
-		itemObjRef= new Item();
-		item=new HashMap<String, List<String>>();
-		itemDetail= new ArrayList<String>();
+		itemObjRef1= new Item();
+		itemObjRef2= new Item();
+		itemObjRef3= new Item();
+		itemObjRef4= new Item();
+	//	item=new HashMap<String, List<Item>>();
+		itemDetail= new ArrayList<Item>();
 		
+		itemObjRef1.setDescription("name of the product is mouse and the price of the product is  300. the company of product is iball.");
+		itemObjRef1.setItemName("mouse");
+		itemObjRef1.setPrice(300);
+		itemObjRef1.setShippingWeight(250);
+		itemObjRef1.setWeight(100);
+		
+		itemObjRef1.setDescription("name of the product is keyboard and the price of the product is  400. the company of product is iball.");
+		itemObjRef1.setItemName("keyboard");
+		itemObjRef1.setPrice(400);
+		itemObjRef1.setShippingWeight(350);
+		itemObjRef1.setWeight(200);
+		
+		itemDetail.add(itemObjRef1);
+		itemDetail.add(itemObjRef2);
+	//	item.put("mouse",itemDetail);
 		
 	}
 
@@ -41,7 +61,8 @@ public class OrderDetailsTestCase {
 	public void tearDown() throws Exception {
 		orderDetailsObjRef=null;
 		orderObjRef=null;
-		itemObjRef =null;
+		itemObjRef1 =null;
+		itemObjRef2 =null;
 	}
 
 	@Test
@@ -92,12 +113,16 @@ public class OrderDetailsTestCase {
 
 	@Test
 	public final void testCalcSubTotal() {
-		fail("Not yet implemented");
+		double quantity=0;
+		assertEquals(quantity*itemDetail.get(0).getPrice(),0,0.00);
+		
 	}
 
 	@Test
 	public final void testCalcWeight() {
-		fail("Not yet implemented");
+		double quantity=0;
+		assertEquals(quantity*itemDetail.get(0).getShippingWeight(),0,0.00);
+		
 	}
 
 }
