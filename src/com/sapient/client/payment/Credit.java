@@ -2,7 +2,8 @@ package com.sapient.client.payment;
 
 import java.util.Calendar;
 import java.util.Date;
-import test.sapient.client.payment.TestCredit;
+
+import com.sapient.client.test.TestCredit;
 
 /**
  * 

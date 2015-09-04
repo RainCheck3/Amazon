@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test.sapient.client.payment;
+package com.sapient.client.test;
 
 import static org.junit.Assert.*;
 
