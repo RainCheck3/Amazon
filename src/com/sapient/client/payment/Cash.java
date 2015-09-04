@@ -1,13 +1,16 @@
 package com.sapient.client.payment;
 
-import javax.activity.InvalidActivityException;
-
 import com.sapient.client.shop.Order;
 
 
 class InValidAmountException extends Exception
 {
-    public InValidAmountException(String message)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InValidAmountException(String message)
     {
         super(message);
     }
@@ -23,9 +26,9 @@ public class Cash extends Payment {
 	}
 
 	public void setCashTendered(double amountPaid) throws Exception {
-		Order orderObjRef= getOrderObjRef();
+		Order order= new Order();
 		
-		if(amountPaid>=orderObjRef.calcTotal()){
+		if(amountPaid>=order.calcTotal()){
 		
 		this.cashTendered = amountPaid;
 	}

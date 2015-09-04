@@ -68,7 +68,6 @@ public class TestCredit {
 	 */
 	@Test
 	public final void testAuthorizeCreditCardType() {
-		System.out.println(creditCardType.get(credit.getType()));
 		assertTrue(credit.authorizeCreditCardType(credit.getType(), credit.getNumber()));
 		assertFalse(creditFalse.authorizeCreditCardType(creditFalse.getType(), creditFalse.getNumber()));
 	}
