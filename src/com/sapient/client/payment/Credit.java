@@ -80,6 +80,12 @@ public class Credit extends Payment implements Authorization {
 		this.date = date;
 	}
 
+	/**
+	 * 
+	 * @param type
+	 * @param number
+	 * @return
+	 */
 	public boolean authorizeCreditCardType(String type, String number) {
 
 		/**
@@ -93,7 +99,11 @@ public class Credit extends Payment implements Authorization {
 
 	}
 
-	
+	/**
+	 * 
+	 * @param number
+	 * @return
+	 */
 	public boolean authorizecreditCardNumber(String number){
 		int length = number.length();
 
@@ -118,6 +128,13 @@ public class Credit extends Payment implements Authorization {
 		return true;
 	}
 	
+	
+	/**
+	 * 
+	 * @param number
+	 * @param expriyDate
+	 * @return
+	 */
 	public boolean authorizeCreditCardExpiryDate(String number, Date expriyDate){
 		
 		/**

@@ -19,6 +19,7 @@ public class Check extends Payment implements Authorization {
 	 * This method gets bank name.
 	 * @return name
 	 */
+	
 	public String getName() {
 		return name;
 	}
@@ -63,14 +64,13 @@ public class Check extends Payment implements Authorization {
 	 */
 	@Override
 	public boolean authorized() {
-		boolean flagName,flagBankID;
 		
-		flagBankID = bankNameIDPair.containsKey(bankID);// sets true if such Bank ID exist.
-		flagName = bankNameIDPair.containsValue(name);// sets true if such Bank Name exist.
 		
-		if(flagBankID && flagName){
+		if(bankNameIDPair.get(bankID).equals(name)){
 			return true;
 		}
+		
+		
 		return false;
 		
 	}	
