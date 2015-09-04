@@ -23,7 +23,11 @@ public class Order {
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		if (date == null) {
+			throw new IllegalArgumentException("Invalid date entered");
+		} else {
+			this.date = date;
+		}
 	}
 
 	public String getStatus() {
@@ -31,7 +35,12 @@ public class Order {
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		if (status == null) {
+			throw new IllegalArgumentException("Invalid status entered");
+
+		} else {
+			this.status = status;
+		}
 	}
 
 	public NewCustomer getCustomer() {
@@ -39,7 +48,11 @@ public class Order {
 	}
 
 	public void setCustomer(NewCustomer customer) {
-		this.customer = customer;
+		if (customer == null) {
+			throw new IllegalArgumentException("Null customer object");
+		} else {
+			this.customer = customer;
+		}
 	}
 
 	public Payment getPayment() {
@@ -47,7 +60,11 @@ public class Order {
 	}
 
 	public void setPayment(Payment payment) {
-		this.payment = payment;
+		if (payment == null) {
+			throw new IllegalArgumentException("Null payment object");
+		} else {
+			this.payment = payment;
+		}
 	}
 
 	public List<OrderDetail> getOrderDetail() {
@@ -55,7 +72,11 @@ public class Order {
 	}
 
 	public void setOrderDetail(List<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
+		if (orderDetails == null) {
+			throw new IllegalArgumentException("Null orderDetails object");
+		} else {
+			this.orderDetails = orderDetails;
+		}
 	}
 
 	public double calcTax() {

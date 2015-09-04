@@ -1,10 +1,11 @@
 package com.sapient.client.shop;
 
+import static com.sapient.client.util.IsNumber.isNumeric;
+
 /**
  * 
- * @author jxu1, mohit, shivam 
- * This class represents a customer name, address, and order, 
- * along with getter and setter methods for each
+ * @author jxu1, mohit, shivam This class represents a customer name, address,
+ *         and order, along with getter and setter methods for each
  */
 public class NewCustomer {
 	private String name;
@@ -16,7 +17,12 @@ public class NewCustomer {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name.length() < 2) {
+			throw new IllegalArgumentException(
+					"Invalid name entered, length needs to be greater than 2");
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getAddress() {
@@ -24,7 +30,12 @@ public class NewCustomer {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		if (address.length() < 10 || !(isNumeric(address.substring(0, 1)))) {
+			throw new IllegalArgumentException(
+					"Invalid address, length must be greater than 10 and first character needs to be numeric");
+		} else {
+			this.address = address;
+		}
 	}
 
 	public Order getOrder() {
@@ -32,7 +43,10 @@ public class NewCustomer {
 	}
 
 	public void setOrder(Order order) {
-		this.order = order;
+		if (order == null) {
+			throw new IllegalArgumentException("Null order object entered");
+		} else {
+			this.order = order;
+		}
 	}
-
 }
