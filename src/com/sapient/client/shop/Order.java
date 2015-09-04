@@ -83,7 +83,6 @@ public class Order {
 			currentOrder = ordersIterator.next();
 			totalPrice += currentOrder.calcSubTotal();
 		}
-
 		totalPrice += calcTax();
 
 		return totalPrice;
