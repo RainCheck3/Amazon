@@ -16,7 +16,7 @@ public class Check extends Payment implements Authorization {
 	private String bankID;
 	
 	/**
-	 * This methos gets bank name.
+	 * This method gets bank name.
 	 * @return name
 	 */
 	public String getName() {
@@ -58,7 +58,7 @@ public class Check extends Payment implements Authorization {
 	}
 	
 	/**
-	 * This method authorise whether such bankID and bankName exist.
+	 * This method authorize whether such bankID and bankName exist.
 	 * This method overrides authorize() method from Authorization Interface in same Package.
 	 */
 	@Override
