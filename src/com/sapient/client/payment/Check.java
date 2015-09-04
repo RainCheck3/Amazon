@@ -1,6 +1,6 @@
 package com.sapient.client.payment;
 
-import test.sapient.client.payment.TestCheck;
+import com.sapient.client.test.TestCheck;
 
 
 /**
