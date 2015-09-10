@@ -33,18 +33,14 @@ public class OrderDetailsTestCase {
 		itemObjRef = null;
 	}
 
-	@Test
-	public final void testInvalidQuantity() {
-		try {
-			orderDetail.setQuantity(0);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
-		try {
-			orderDetail.setQuantity(501);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+	@Test(expected = IllegalArgumentException.class)
+	public final void testInvalidQuantityLow() {
+		orderDetail.setQuantity(0);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public final void testInvalidQuantityHigh() {
+		orderDetail.setQuantity(501);
 	}
 
 	@Test
@@ -53,13 +49,9 @@ public class OrderDetailsTestCase {
 		assertEquals(20, orderDetail.getQuantity());
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidTaxStatus() {
-		try {
-			orderDetail.setTaxStatus(-1);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+		orderDetail.setTaxStatus(-1);
 	}
 
 	@Test
@@ -68,13 +60,9 @@ public class OrderDetailsTestCase {
 		assertEquals(0.3, orderDetail.getTaxStatus(), 0);
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidOrder() {
-		try {
-			orderDetail.setOrder(null);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		orderDetail.setOrder(null);
 	}
 
 	@Test
@@ -83,13 +71,9 @@ public class OrderDetailsTestCase {
 		assertTrue(orderDetail.getOrder() instanceof Order);
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidItem() {
-		try {
-			orderDetail.setItem(null);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		orderDetail.setItem(null);
 	}
 
 	@Test

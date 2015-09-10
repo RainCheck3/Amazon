@@ -38,14 +38,10 @@ public class OrderTestCase {
 		paymentObjRef = null;
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidDate() {
 		Date date = null;
-		try {
-			orderObjRef.setDate(date);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		orderObjRef.setDate(date);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -58,15 +54,10 @@ public class OrderTestCase {
 		assertEquals(3, orderObjRef.getDate().getDay());
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidStatus() {
 		String status = null;
-
-		try {
-			orderObjRef.setStatus(status);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		orderObjRef.setStatus(status);
 	}
 
 	@Test
@@ -76,13 +67,9 @@ public class OrderTestCase {
 		assertEquals("Order placed", orderObjRef.getStatus());
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidCustomer() {
-		try {
-			orderObjRef.setCustomer(null);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		orderObjRef.setCustomer(null);
 	}
 
 	@Test
@@ -91,13 +78,9 @@ public class OrderTestCase {
 		assertTrue(orderObjRef.getCustomer() instanceof NewCustomer);
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidPayment() {
-		try {
 			orderObjRef.setPayment(null);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
@@ -106,13 +89,9 @@ public class OrderTestCase {
 		assertTrue(orderObjRef.getPayment() instanceof Payment);
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidOrderDetail() {
-		try {
-			orderObjRef.setOrderDetail(null);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		orderObjRef.setOrderDetail(null);
 	}
 
 	@Test

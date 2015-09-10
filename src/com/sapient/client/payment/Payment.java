@@ -10,11 +10,11 @@ public class Payment {
 		return orderObjRef;
 	}
 
-	public void setOrderObjRef(Order orderObjRef) throws Exception {
+	public void setOrderObjRef(Order orderObjRef) {
 		if (orderObjRef != null) {
 			this.orderObjRef = orderObjRef;
 		} else {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 

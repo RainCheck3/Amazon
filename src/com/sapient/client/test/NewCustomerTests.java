@@ -2,7 +2,6 @@ package com.sapient.client.test;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,13 +27,9 @@ public class NewCustomerTests {
 		newCustomerObjRef = null;
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidName() {
-		try {
-			newCustomerObjRef.setName("J");
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+		newCustomerObjRef.setName("J");
 	}
 
 	@Test
@@ -42,19 +37,15 @@ public class NewCustomerTests {
 		newCustomerObjRef.setName("Jiaju");
 		assertEquals("Jiaju", newCustomerObjRef.getName());
 	}
-	
-	@Test
-	public final void testInvalidAddress() {
-		try {
-			newCustomerObjRef.setAddress("Lakeshore Drive");
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
-		try {
-			newCustomerObjRef.setAddress("100 Lake");
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+
+	@Test(expected = IllegalArgumentException.class)
+	public final void testInvalidAddress1() {
+		newCustomerObjRef.setAddress("Lakeshore Drive");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public final void testInvalidAddress2() {
+		newCustomerObjRef.setAddress("100 Lake");
 	}
 
 	@Test
@@ -62,14 +53,10 @@ public class NewCustomerTests {
 		newCustomerObjRef.setAddress("100 Lakeshore Drive");
 		assertEquals("100 Lakeshore Drive", newCustomerObjRef.getAddress());
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public final void testInvalidOrder() {
-		try {
-			newCustomerObjRef.setOrder(null);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		newCustomerObjRef.setOrder(null);
 	}
 
 	@Test
@@ -77,7 +64,5 @@ public class NewCustomerTests {
 		newCustomerObjRef.setOrder(orderObjRef);
 		assertTrue(newCustomerObjRef.getOrder() instanceof Order);
 	}
-	
-	
 
 }

@@ -44,7 +44,7 @@ public class NewCustomer {
 
 	public void setOrder(Order order) {
 		if (order == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("Null order object");
 		} else {
 			this.order = order;
 		}

@@ -2,7 +2,6 @@ package com.sapient.client.shop;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import com.sapient.client.payment.Payment;
@@ -26,7 +25,7 @@ public class Order {
 
 	public void setDate(Date date) {
 		if (date == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		} else {
 			this.date = date;
 		}
@@ -38,7 +37,7 @@ public class Order {
 
 	public void setStatus(String status) {
 		if (status == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 
 		} else {
 			this.status = status;
@@ -51,7 +50,7 @@ public class Order {
 
 	public void setCustomer(NewCustomer customer) {
 		if (customer == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		} else {
 			this.customer = customer;
 		}
@@ -63,7 +62,7 @@ public class Order {
 
 	public void setPayment(Payment payment) {
 		if (payment == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		} else {
 			this.payment = payment;
 		}
@@ -75,7 +74,7 @@ public class Order {
 
 	public void setOrderDetail(List<OrderDetail> orderDetails) {
 		if (orderDetails == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		} else {
 			this.orderDetails = orderDetails;
 		}

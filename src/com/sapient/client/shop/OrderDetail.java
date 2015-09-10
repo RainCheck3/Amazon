@@ -1,6 +1,5 @@
 package com.sapient.client.shop;
 
-
 /**
  * 
  * @author jxu1, mohit, shivam Information about a particular order, including
@@ -18,8 +17,8 @@ public class OrderDetail {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) throws IllegalArgumentException {
-		if (quantity > 0 || quantity < 500) {
+	public void setQuantity(int quantity) {
+		if (quantity > 0 && quantity < 500) {
 			this.quantity = quantity;
 		} else {
 			throw new IllegalArgumentException("Stock value is invalid");
@@ -30,7 +29,7 @@ public class OrderDetail {
 		return taxStatus;
 	}
 
-	public void setTaxStatus(double taxStatus) throws IllegalArgumentException {
+	public void setTaxStatus(double taxStatus) {
 		if (taxStatus >= 0) {
 			this.taxStatus = taxStatus;
 		} else {
@@ -42,11 +41,11 @@ public class OrderDetail {
 		return order;
 	}
 
-	public void setOrder(Order order) throws NullPointerException {
+	public void setOrder(Order order) {
 		if (order != null) {
 			this.order = order;
 		} else {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -54,11 +53,11 @@ public class OrderDetail {
 		return item;
 	}
 
-	public void setItem(Item item) throws NullPointerException {
+	public void setItem(Item item) {
 		if (item != null) {
 			this.item = item;
 		} else {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
